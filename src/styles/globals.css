@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-primary {
+        text-transform: none;
+        border-radius: 0.5rem;
+    }
+    .btn-primary:hover {
+        --tw-scale-x: 0.98;
+        --tw-scale-y: 0.98;
+        transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    }
+}
+
+.toast {
+    opacity: 1 !important;
+    box-shadow: none !important;
+}
+/* 
+.toast-success {
+    background-color: hsl(var(--p)) !important;
+} */
+.toast-warning {
+    background-color: hsl(var(--wa)) !important;
+}
+.toast-error {
+    background-color: hsl(var(--er)) !important;
+}
+.toast-info {
+    background-color: hsl(var(--in)) !important;
+}
+
+

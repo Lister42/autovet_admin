@@ -1,0 +1,32 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    curl -fsSL https://bun.sh/install | bash 
+  displayName: 'install bun'
+- task: Cache@2
+  inputs:
+    key: next | $(Agent.OS) | package.json
+    path: '$(System.DefaultWorkingDirectory)/.next/cache'
+    restoreKeys: 'bun.lockb'
+- script: |
+    ~/.bun/bin/bun install
+    npx prisma generate
+    ~/.bun/bin/bun run build
+  displayName: 'bun install and build'
+  env:
+    NEXT_TELEMETRY_DISABLED: 1
